@@ -41,7 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.241299, 0.290294, -0.268531
 mesh = ExtResource("2_1bucv")
 
 [node name="Spaceship3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.405507, -0.0797241, -0.268531)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.556555, -0.0797241, -0.268531)
 mesh = ExtResource("2_1bucv")
 
 [node name="Spaceship4" type="MeshInstance3D" parent="."]
