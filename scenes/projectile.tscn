@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://wd40dojitp31"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_tg3u0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p1t86"]
+radius = 0.14022
+
+[node name="StaticBody3D" type="Area3D"]
+script = ExtResource("1_tg3u0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_p1t86")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.01
