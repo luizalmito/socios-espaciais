@@ -12,5 +12,4 @@ script = ExtResource("1_tg3u0")
 shape = SubResource("SphereShape3D_p1t86")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 8.67298, 0, 0, 0)
 radius = 0.01
