@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://wd40dojitp31"]
+[gd_scene load_steps=3 format=3 uid="uid://c6b6khgpq2xwe"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_tg3u0"]
 
@@ -12,4 +12,5 @@ script = ExtResource("1_tg3u0")
 shape = SubResource("SphereShape3D_p1t86")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 8.67298, 0, 0, 0)
 radius = 0.01
