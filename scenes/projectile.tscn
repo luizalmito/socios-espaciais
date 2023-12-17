@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6b6khgpq2xwe"]
+[gd_scene load_steps=4 format=3 uid="uid://c6b6khgpq2xwe"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_tg3u0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_p1t86"]
 radius = 0.14022
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k28t7"]
+albedo_color = Color(1, 0, 0, 1)
 
 [node name="StaticBody3D" type="Area3D"]
 script = ExtResource("1_tg3u0")
@@ -12,4 +15,5 @@ script = ExtResource("1_tg3u0")
 shape = SubResource("SphereShape3D_p1t86")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material_override = SubResource("StandardMaterial3D_k28t7")
 radius = 0.01
