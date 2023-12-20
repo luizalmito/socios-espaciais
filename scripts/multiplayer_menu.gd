@@ -1,7 +1,5 @@
 extends Control
 
-@export var address = "127.0.0.1"
-@export var port = 8080
 var peer
 
 func _ready():
@@ -20,8 +18,8 @@ func player_disconnected(id):
 func connection_success():
 	send_player_data.rpc_id(1, $name.text, multiplayer.get_unique_id())
 
-func connection_fail():
-	print("failed connection")
+func connection_fail(error):
+	print("failed connection" + str(error))
 
 @rpc("any_peer")
 func send_player_data(p_name, id):
@@ -42,10 +40,11 @@ func start_game():
 	self.hide()
 
 func _on_host_button_down():
-	if name == "":
+	if $name.text == "":
 		return
 	peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(port)
+	var error = peer.create_server(int($port.text))
+	
 	
 	if error != OK:
 		print("cannot host: " + str(error))
@@ -61,7 +60,7 @@ func _on_join_button_down():
 	if $name.text == "":
 		return
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(address, port)
+	peer.create_client($ip.text, int($port.text))
 	multiplayer.set_multiplayer_peer(peer)
 	$join.disabled = true
 
