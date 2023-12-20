@@ -42,8 +42,11 @@ func start_game():
 	self.hide()
 
 func _on_host_button_down():
+	if name == "":
+		return
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port)
+	
 	if error != OK:
 		print("cannot host: " + str(error))
 		return
@@ -55,6 +58,8 @@ func _on_host_button_down():
 	print("hosting")
 
 func _on_join_button_down():
+	if $name.text == "":
+		return
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(address, port)
 	multiplayer.set_multiplayer_peer(peer)
@@ -70,5 +75,5 @@ func player_list():
 
 	for i in MultiplayerManager.players:
 		var new_name = Label.new()
-		new_name.text = str(MultiplayerManager.players[i].id)
+		new_name.text = str(MultiplayerManager.players[i].name)
 		$player_list.add_child(new_name)
