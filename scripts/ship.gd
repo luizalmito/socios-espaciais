@@ -36,8 +36,8 @@ func rotate_player(delta):
 	
 	# Animation
 	var tween = create_tween().set_parallel()
-	tween.tween_property($Spaceship,"rotation", Vector3(0,0,deg_to_rad(35)) * input_rot.x, 1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property($Camera3D,"position", Vector3(-0.315*input_rot.x,0.2,0.47),2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property($Spaceship,"rotation", Vector3(0,0,deg_to_rad(35)) * input_rot.x, 1).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	tween.tween_property($Camera3D,"position", Vector3(-0.315*input_rot.x,0.2,0.47),2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 
 func move_player(delta):
 	# Input Handling
@@ -46,10 +46,11 @@ func move_player(delta):
 	# Accelerantion
 	if (input_dir == 0):
 		velocity = velocity.move_toward(Vector3.ZERO, ACCEL* delta)
+		pass
 	elif (input_dir < 0):
 		velocity = velocity.move_toward(-transform.basis.z * SPEED, ACCEL * delta)
 	else:
-		velocity = velocity.move_toward(Vector3.ZERO, SPEED * delta)
+		velocity = velocity.move_toward(transform.basis.z * SPEED, ACCEL * delta)
 	
 	# Rotating Velocity Vector
 	velocity = velocity.rotated(transform.basis.x.normalized(), ROT_SPEED_y * rot_velocity.y * delta)

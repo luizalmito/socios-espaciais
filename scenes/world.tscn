@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://injyr7epxboo"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_0cqdk"]
-[ext_resource type="Texture2D" uid="uid://cbd4bbj71hxjs" path="res://sky/ringed_gas_giant_planet.png" id="1_bg3l2"]
-[ext_resource type="PackedScene" uid="uid://chws8dajpd5g6" path="res://scenes/ship.tscn" id="1_gipm3"]
-[ext_resource type="ArrayMesh" uid="uid://wv7g22ke65nb" path="res://models/ship/spaceship.obj" id="2_1bucv"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_rcrhk"]
+[ext_resource type="Texture2D" uid="uid://cbd4bbj71hxjs" path="res://sky/ringed_gas_giant_planet.png" id="2_ci5rb"]
+[ext_resource type="PackedScene" uid="uid://chws8dajpd5g6" path="res://scenes/ship.tscn" id="3_a4dca"]
+[ext_resource type="ArrayMesh" uid="uid://wv7g22ke65nb" path="res://models/ship/spaceship.obj" id="4_h2tp4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rp7i5"]
-panorama = ExtResource("1_bg3l2")
+panorama = ExtResource("2_ci5rb")
 
 [sub_resource type="Sky" id="Sky_v1bb4"]
 sky_material = SubResource("PanoramaSkyMaterial_rp7i5")
@@ -26,29 +26,39 @@ glow_enabled = true
 fog_light_color = Color(0.0862745, 0.0980392, 0.113725, 1)
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_0cqdk")
+script = ExtResource("1_rcrhk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fjb2k")
 
-[node name="Ship" parent="." instance=ExtResource("1_gipm3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0216717, 0, -0.0508518)
+[node name="Ship" parent="." instance=ExtResource("3_a4dca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0216717, 0.188773, -0.0508518)
 
 [node name="Spaceship" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.666771, 0, -0.268531)
-mesh = ExtResource("2_1bucv")
+mesh = ExtResource("4_h2tp4")
 
 [node name="Spaceship2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.241299, 0.290294, -0.268531)
-mesh = ExtResource("2_1bucv")
+mesh = ExtResource("4_h2tp4")
 
 [node name="Spaceship3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.556555, -0.0797241, -0.268531)
-mesh = ExtResource("2_1bucv")
+mesh = ExtResource("4_h2tp4")
 
 [node name="Spaceship4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15733, 0.147533, 0.852094)
-mesh = ExtResource("2_1bucv")
+mesh = ExtResource("4_h2tp4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.581967, 0.813213, 0, -0.813213, 0.581967, 0, 6.33811, 0)
+
+[node name="wall" type="CSGBox3D" parent="."]
+transform = Transform3D(0.71515, 0, 0, 0, 1, 0, 0, 0, 1, -0.449951, 0, 0)
+use_collision = true
+size = Vector3(0.100098, 1, 1)
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(-3.12602e-08, 2.57196, 0, -0.71515, -1.12424e-07, 0, 0, 0, 1.81759, -0.449951, -0.3364, 0)
+use_collision = true
+size = Vector3(0.100098, 1, 1)

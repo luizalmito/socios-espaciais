@@ -12,6 +12,7 @@ albedo_color = Color(1, 0, 0, 1)
 script = ExtResource("1_tg3u0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 shape = SubResource("SphereShape3D_p1t86")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
