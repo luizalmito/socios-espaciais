@@ -16,7 +16,7 @@ var shoot_cd = false
 @onready var cannon = cannonR
 
 # Signals
-signal shoot(position, rotation)
+signal shoot(position, rotation, font, type)
 
 func _process(delta):
 	rotate_player(delta)
@@ -60,7 +60,7 @@ func move_player(delta):
 
 func shooting():
 	if (Input.is_action_pressed("shoot") and shoot_cd == false):
-		shoot.emit(cannon.global_position, rotation)
+		shoot.emit(cannon.global_position, rotation, self)
 		shoot_cd = true
 		await get_tree().create_timer(0.2).timeout
 		shoot_cd = false

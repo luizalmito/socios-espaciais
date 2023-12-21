@@ -20,7 +20,9 @@ shape = SubResource("SphereShape3D_y7t0v")
 mesh = ExtResource("1_p8uby")
 
 [node name="right_shoot" type="Marker3D" parent="Spaceship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093739, 0, -0.186793)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093739, 0, -0.186393)
+gizmo_extents = 0.0
 
 [node name="left_shoot" type="Marker3D" parent="Spaceship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094, 0, -0.187)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094, 0, -0.1866)
+gizmo_extents = 0.0
