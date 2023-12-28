@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://injyr7epxboo"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_0cqdk"]
+[ext_resource type="Texture2D" uid="uid://cbd4bbj71hxjs" path="res://sky/ringed_gas_giant_planet.png" id="1_bg3l2"]
+[ext_resource type="PackedScene" uid="uid://chws8dajpd5g6" path="res://scenes/ship.tscn" id="1_gipm3"]
+[ext_resource type="PackedScene" uid="uid://dg3c2p2hvw1oh" path="res://scenes/prop.tscn" id="4_in0nm"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rp7i5"]
+panorama = ExtResource("1_bg3l2")
+
+[sub_resource type="Sky" id="Sky_v1bb4"]
+sky_material = SubResource("PanoramaSkyMaterial_rp7i5")
+
+[sub_resource type="Environment" id="Environment_fjb2k"]
+background_mode = 2
+sky = SubResource("Sky_v1bb4")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.3
+reflected_light_source = 1
+tonemap_mode = 3
+ssr_fade_in = 1.883
+ssr_fade_out = 0.241484
+ssr_depth_tolerance = 41.71
+glow_enabled = true
+fog_light_color = Color(0.0862745, 0.0980392, 0.113725, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_0cqdk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fjb2k")
+
+[node name="Ship" parent="." instance=ExtResource("1_gipm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0216717, 0, -0.0508518)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.581967, 0.813213, 0, -0.813213, 0.581967, 0, 6.33811, 0)
+
+[node name="props" type="Node" parent="."]
+
+[node name="StaticBody3D" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14937, 0, -1.20405)
+
+[node name="StaticBody3D2" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249453, 0, -1.20405)
+
+[node name="StaticBody3D3" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14937, 0.116216, -1.20405)
+
+[node name="StaticBody3D4" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249453, 0.116216, -1.20405)
+
+[node name="StaticBody3D5" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0936006, 0, -1.20405)
+
+[node name="StaticBody3D6" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218025, 0, -1.20405)
+
+[node name="StaticBody3D7" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0936006, 0.116216, -1.20405)
+
+[node name="StaticBody3D8" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218025, 0.116216, -1.20405)
+
+[node name="StaticBody3D9" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14937, 0.237327, -1.20405)
+
+[node name="StaticBody3D10" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249453, 0.237327, -1.20405)
+
+[node name="StaticBody3D11" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14937, 0.353544, -1.20405)
+
+[node name="StaticBody3D12" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249453, 0.353544, -1.20405)
+
+[node name="StaticBody3D13" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0936006, 0.237327, -1.20405)
+
+[node name="StaticBody3D14" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218025, 0.237327, -1.20405)
+
+[node name="StaticBody3D15" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0936006, 0.353544, -1.20405)
+
+[node name="StaticBody3D16" parent="props" instance=ExtResource("4_in0nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218025, 0.353544, -1.20405)
