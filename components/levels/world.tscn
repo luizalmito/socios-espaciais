@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://injyr7epxboo"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_0cqdk"]
-[ext_resource type="Texture2D" uid="uid://cbd4bbj71hxjs" path="res://sky/ringed_gas_giant_planet.png" id="1_bg3l2"]
-[ext_resource type="PackedScene" uid="uid://chws8dajpd5g6" path="res://scenes/ship.tscn" id="1_gipm3"]
-[ext_resource type="PackedScene" uid="uid://dg3c2p2hvw1oh" path="res://scenes/prop.tscn" id="4_in0nm"]
+[ext_resource type="Script" path="res://components/levels/world.gd" id="1_0cqdk"]
+[ext_resource type="Texture2D" uid="uid://cbd4bbj71hxjs" path="res://textures/sky/ringed_gas_giant_planet.png" id="1_bg3l2"]
+[ext_resource type="PackedScene" uid="uid://chws8dajpd5g6" path="res://components/player/ship.tscn" id="1_gipm3"]
+[ext_resource type="PackedScene" uid="uid://dg3c2p2hvw1oh" path="res://components/player/prop.tscn" id="4_in0nm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rp7i5"]
 panorama = ExtResource("1_bg3l2")

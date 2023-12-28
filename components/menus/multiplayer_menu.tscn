@@ -69,6 +69,7 @@ offset_bottom = 127.0
 placeholder_text = "código da sala"
 
 [node name="host_id" type="LineEdit" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 280.0
 offset_top = 168.0

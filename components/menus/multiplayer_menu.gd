@@ -17,7 +17,7 @@ func _ready():
 	peer.peer_connection_interrupted.connect(connection_fail) #client-side
 
 #signal functions
-func player_connected(id):
+func player_connected(_id):
 	pass
 
 func player_disconnected(id):

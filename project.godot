@@ -11,10 +11,18 @@ config_version=5
 [application]
 
 config/name="socios espaciais"
-run/main_scene="res://world.tscn"
+run/main_scene="res://components/menus/loading.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-config/icon="res://icon.svg"
+config/icon="res://textures/project.png"
+
+[autoload]
+
+EOS_tick="*res://addons/epic-online-services-godot/tick.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/epic-online-services-godot/plugin.cfg")
 
 [input]
 
