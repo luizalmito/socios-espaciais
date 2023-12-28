@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://chws8dajpd5g6"]
+
+[ext_resource type="Script" path="res://components/player/ship.gd" id="1_ckqok"]
+[ext_resource type="ArrayMesh" uid="uid://wv7g22ke65nb" path="res://models/ship/spaceship.obj" id="1_p8uby"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y7t0v"]
+radius = 0.969642
+
+[node name="Ship" type="CharacterBody3D"]
+script = ExtResource("1_ckqok")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988876, 0.148741, 0, -0.148741, 0.988876, 0, 0.2, 0.47)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.0617067)
+shape = SubResource("SphereShape3D_y7t0v")
+
+[node name="Spaceship" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_p8uby")
+
+[node name="right_shoot" type="Marker3D" parent="Spaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093739, 0, -0.186793)
+
+[node name="left_shoot" type="Marker3D" parent="Spaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094, 0, -0.187)

@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct6yb0jx4yji3"]
+
+[ext_resource type="Script" path="res://components/menus/multiplayer_menu.gd" id="1_2drny"]
+
+[node name="Multiplayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2drny")
+
+[node name="host" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 160.0
+offset_right = 264.0
+offset_bottom = 207.0
+focus_mode = 0
+text = "host"
+
+[node name="join" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 88.0
+offset_right = 264.0
+offset_bottom = 135.0
+focus_mode = 0
+text = "join"
+
+[node name="start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 232.0
+offset_right = 264.0
+offset_bottom = 279.0
+text = "start"
+
+[node name="name" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 296.0
+offset_bottom = 63.0
+placeholder_text = "nome"
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="player_list" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 48.0
+offset_right = 912.0
+offset_bottom = 48.0
+metadata/_edit_use_anchors_ = true
+
+[node name="code" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 96.0
+offset_right = 448.0
+offset_bottom = 127.0
+placeholder_text = "código da sala"
+
+[node name="host_id" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 168.0
+offset_right = 520.0
+offset_bottom = 199.0
+editable = false
+draw_control_chars = true
+select_all_on_focus = true
+
+[connection signal="button_down" from="host" to="." method="_on_host_button_down"]
+[connection signal="button_down" from="join" to="." method="_on_join_button_down"]
+[connection signal="button_down" from="start" to="." method="_on_start_button_down"]
