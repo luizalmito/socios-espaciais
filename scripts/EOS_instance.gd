@@ -35,7 +35,11 @@ func _ready() -> void:
 	if res != EOS.Result.Success:
 		print("Failed to set log level: ", EOS.result_str(res))
 
-	_anonymous_login()
+	EOS.get_instance().connect_interface_login_callback.connect(_on_connect_interface_login_callback)
+	EOS.get_instance().auth_interface_login_callback.connect(_on_auth_login_callback)
+
+	$connecting_warning.hide()
+	$UI.show()
 
 func _on_logging_interface_callback(msg) -> void:
 	msg = EOS.Logging.LogMessage.from(msg) as EOS.Logging.LogMessage
@@ -59,7 +63,6 @@ func _anonymous_login() -> void:
 	user_login_info.display_name = "Anon User"
 	login_options.user_login_info = user_login_info
 	EOS.Connect.ConnectInterface.login(login_options)
-	EOS.get_instance().connect_interface_login_callback.connect(_on_connect_interface_login_callback)
 
 func _on_connect_interface_login_callback(data: Dictionary) -> void:
 	if not data.success:
@@ -69,3 +72,47 @@ func _on_connect_interface_login_callback(data: Dictionary) -> void:
 
 	print_rich("[b]Login successfull[/b]: local_user_id=", data.local_user_id)
 	get_tree().change_scene_to_file("res://components/menus/multiplayer_menu.tscn")
+
+func _on_auth_login_callback(data: Dictionary) -> void:
+	if not data.success:
+		print("Login failed")
+		EOS.print_result(data)
+		return
+	
+	if data.local_user_id != "":
+		var epic_account_id = data.local_user_id
+		print("Epic Account Id: ", epic_account_id)
+
+		var copy_user_auth_token = EOS.Auth.AuthInterface.copy_user_auth_token(EOS.Auth.CopyUserAuthTokenOptions.new(), epic_account_id)
+		var token = copy_user_auth_token.token
+
+		# Get user info of logged in user
+		var options = EOS.UserInfo.QueryUserInfoOptions.new()
+		options.local_user_id = epic_account_id
+		options.target_user_id = epic_account_id
+		EOS.UserInfo.UserInfoInterface.query_user_info(options)
+		# Connect the account to get a Product User Id from the Epic Account Id
+		var credentials = EOS.Connect.Credentials.new()
+		credentials.token = token.access_token
+		credentials.type = EOS.ExternalCredentialType.Epic
+	
+		var login_options = EOS.Connect.LoginOptions.new()
+		login_options.credentials = credentials
+		EOS.Connect.ConnectInterface.login(login_options)
+
+func _on_annon_login_button_down():
+	_anonymous_login()
+
+
+func _on_dev_login_button_down():
+	if $UI/DevName.text.is_empty():
+		return
+	var credentials = EOS.Auth.Credentials.new()
+	credentials.token = $UI/DevName.text
+	credentials.type = EOS.Auth.LoginCredentialType.Developer
+	credentials.id = "localhost:7878"
+	
+	var login_options = EOS.Auth.LoginOptions.new()
+	login_options.credentials = credentials
+	login_options.scope_flags = EOS.Auth.ScopeFlags.BasicProfile
+	EOS.Auth.AuthInterface.login(login_options)

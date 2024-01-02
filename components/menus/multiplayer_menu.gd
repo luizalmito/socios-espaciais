@@ -11,13 +11,14 @@ func _ready():
 	MultiplayerManager.set_script(MultiplayerManagerScript)
 
 #connecting signals
+	multiplayer.connected_to_server.connect(connection_success)
 	peer.peer_connected.connect(player_connected)
 	peer.peer_disconnected.connect(player_disconnected)
-	peer.peer_connection_established.connect(connection_success) #client-side
+	#peer.peer_connection_established.connect(connection_success) #client-side
 	peer.peer_connection_interrupted.connect(connection_fail) #client-side
 
 #signal functions
-func player_connected(_id):
+func player_connected(id):
 	pass
 
 func player_disconnected(id):
@@ -25,7 +26,8 @@ func player_disconnected(id):
 	refresh_player_list()
 
 func connection_success():
-	send_player_data.rpc_id(1, $name.text, multiplayer.get_unique_id())
+	if not multiplayer.is_server():
+		send_player_data.rpc_id(1, $name.text, multiplayer.get_unique_id())
 
 func connection_fail(error):
 	print("failed connection" + str(error))
@@ -55,24 +57,25 @@ func _on_host_button_down():
 	if $name.text == "":
 		return
 	peer.create_server("teste")
+	multiplayer.multiplayer_peer = peer
 	send_player_data($name.text, multiplayer.get_unique_id())
 	$start.show()
 	$join.disabled = true
 	$host_id.text = EOS_tick.login_id
 	$host_id.show()
-	print("hosting")
 
 #when pressing the join button
 func _on_join_button_down():
-	if $name.text == "":
+	if $name.text == "" or $code.text == "":
 		return
 	peer.create_client("teste", $code.text)
+	multiplayer.multiplayer_peer = peer
 
 #when pressing the start button
 func _on_start_button_down():
 	start_game.rpc()
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func refresh_player_list():
 	for i in $player_list.get_children():
 		i.queue_free()

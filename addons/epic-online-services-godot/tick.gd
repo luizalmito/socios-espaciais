@@ -1,6 +1,6 @@
 extends Node
 
-var login_id = "bsota"
+var login_id
 
 func _ready():
 	IEOS.connect_interface_login_callback.connect(func (data: Dictionary):

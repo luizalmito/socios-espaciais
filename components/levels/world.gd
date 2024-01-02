@@ -1,7 +1,7 @@
 extends Node3D
 
 func _ready():
-	$Ship.shoot.connect(shooting)
+	$Ship/submarine/gun.connect("shoot", shooting)
 
 func shooting(p_position, p_rotation, font, _type = "default"):
 	var projectile = preload("res://components/player/projectile.tscn").instantiate()
@@ -14,4 +14,5 @@ func shooting(p_position, p_rotation, font, _type = "default"):
 func deal_damage(font, target):
 	if font == target:
 		return
+	print(str(font) + "/" + str(target))
 	target.queue_free()

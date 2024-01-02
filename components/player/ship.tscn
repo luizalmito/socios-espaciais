@@ -1,28 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://chws8dajpd5g6"]
+[gd_scene load_steps=6 format=3 uid="uid://chws8dajpd5g6"]
 
 [ext_resource type="Script" path="res://components/player/ship.gd" id="1_ckqok"]
-[ext_resource type="ArrayMesh" uid="uid://wv7g22ke65nb" path="res://models/ship/spaceship.obj" id="1_p8uby"]
+[ext_resource type="ArrayMesh" uid="uid://dxojh54quu1sf" path="res://models/ship/submarine.obj" id="2_t8b3n"]
+[ext_resource type="ArrayMesh" uid="uid://dgjctccq0u78w" path="res://models/ship/gun.obj" id="3_ype6e"]
+[ext_resource type="Script" path="res://components/player/gun.gd" id="4_vqram"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y7t0v"]
-radius = 0.969642
+radius = 0.96165
 
 [node name="Ship" type="CharacterBody3D"]
 script = ExtResource("1_ckqok")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="subCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.988876, 0.148741, 0, -0.148741, 0.988876, 0, 0.2, 0.47)
+fov = 106.108
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.0617067)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0441074, 0)
 shape = SubResource("SphereShape3D_y7t0v")
 
-[node name="Spaceship" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_p8uby")
+[node name="gunCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988876, 0.148741, 0, -0.148741, 0.988876, 1.69407e-21, 0.2, 0.47)
+fov = 106.108
 
-[node name="right_shoot" type="Marker3D" parent="Spaceship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093739, 0, -0.186393)
-gizmo_extents = 0.0
+[node name="submarine" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("2_t8b3n")
 
-[node name="left_shoot" type="Marker3D" parent="Spaceship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094, 0, -0.1866)
+[node name="gun" type="MeshInstance3D" parent="submarine"]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.122778, 0)
+mesh = ExtResource("3_ype6e")
+skeleton = NodePath("../..")
+script = ExtResource("4_vqram")
+
+[node name="muzzle" type="Marker3D" parent="submarine/gun"]
+transform = Transform3D(1.4, 0, -4.26326e-14, 0, 1.4, 0, 4.26326e-14, 0, 1.4, 3.42599e-15, 0.111784, -0.0858476)
 gizmo_extents = 0.0
