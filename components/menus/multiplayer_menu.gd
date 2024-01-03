@@ -11,14 +11,14 @@ func _ready():
 	MultiplayerManager.set_script(MultiplayerManagerScript)
 
 #connecting signals
-	multiplayer.connected_to_server.connect(connection_success)
-	peer.peer_connected.connect(player_connected)
-	peer.peer_disconnected.connect(player_disconnected)
-	#peer.peer_connection_established.connect(connection_success) #client-side
-	peer.peer_connection_interrupted.connect(connection_fail) #client-side
+	multiplayer.peer_connected.connect(player_connected) #everyone
+	multiplayer.peer_disconnected.connect(player_disconnected) #everyone
+	multiplayer.connected_to_server.connect(connection_success) #client-side
+	multiplayer.connection_failed.connect(connection_fail) #client-side
+	multiplayer.server_disconnected.connect(server_closed) #everyone else
 
 #signal functions
-func player_connected(id):
+func player_connected(_id):
 	pass
 
 func player_disconnected(id):
@@ -31,6 +31,9 @@ func connection_success():
 
 func connection_fail(error):
 	print("failed connection" + str(error))
+
+func server_closed():
+	pass
 
 #send data to all players
 @rpc("any_peer")
@@ -75,7 +78,7 @@ func _on_join_button_down():
 func _on_start_button_down():
 	start_game.rpc()
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer")
 func refresh_player_list():
 	for i in $player_list.get_children():
 		i.queue_free()

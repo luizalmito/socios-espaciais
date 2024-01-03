@@ -10,6 +10,12 @@ const ROT_SMOOTHNESS = 1.8
 # Variables
 var rot_velocity: Vector2
 
+func _ready():
+	if multiplayer.get_unique_id() != 1:
+		set_script(null)
+		return
+	$subCam.make_current()
+
 func _process(delta):
 	rotate_player(delta)
 
