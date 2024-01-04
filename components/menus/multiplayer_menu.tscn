@@ -30,6 +30,7 @@ focus_mode = 0
 text = "join"
 
 [node name="start" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 32.0
 offset_top = 232.0
