@@ -14,6 +14,7 @@ config/name="socios espaciais"
 run/main_scene="res://components/menus/EOSMainLogin.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/image="res://textures/project.png"
 config/icon="res://textures/project.png"
 
 [autoload]
